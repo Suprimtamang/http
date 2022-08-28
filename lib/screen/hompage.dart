@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import '../model/image.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({Key? key}) : super(key: key);
+  Homepage({Key? key}) : super(key: key);
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -45,6 +45,7 @@ class _HomepageState extends State<Homepage> {
       final decoded = json.decode(res.body)['hits'];
       image = decoded.map<Hits>((item) {
         final convertedItem = Hits.convertPostsFromJson(item);
+        print(res.body);
         return convertedItem;
       }).toList();
 
@@ -63,272 +64,269 @@ class _HomepageState extends State<Homepage> {
       print(e);
       setState(() {});
     });
+  }
 
-    Widget build(BuildContext context) {
-      print("build called");
-      return Scaffold(
-          body: ListView.builder(
+  Widget buildList() {
+    print("build called");
+    return Scaffold(
+      body: ListView.builder(
         itemCount: image.length,
         itemBuilder: ((context, index) {
           final Hits _image = image[index];
-          return InkWell(
-              onTap: () {},
+          return Container(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: Column(children: [
-                    Icon(Icons.add),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      "Instagram",
-                      style: TextStyle(fontSize: 35),
-                    ),
-                    SizedBox(
-                      width: 120,
-                    ),
+            padding: const EdgeInsets.all(8.0),
+            child: Column(children: [
+              Icon(Icons.add),
+              SizedBox(
+                width: 15,
+              ),
+              Text(
+                "Instagram",
+                style: TextStyle(fontSize: 35),
+              ),
+              SizedBox(
+                width: 120,
+              ),
+              Row(
+                children: [
+                  Icon(Icons.favorite),
+                  SizedBox(
+                    width: 40,
+                  ),
+                  Icon(Icons.send),
+                ],
+              ),
+
+              SizedBox(
+                height: 130,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
                     Row(
                       children: [
-                        Icon(Icons.favorite),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Icon(Icons.send),
-                      ],
-                    ),
-
-                    Flexible(
-                        child: SizedBox(
-                      height: 130,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          Row(
-                            children: [
-                              //story WALA SECTION
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image(
-                                  image: NetworkImage(_image.userImageURL),
-                                  height: 65,
-                                  width: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 45,
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image(
-                                  image: NetworkImage(_image.userImageURL),
-                                  height: 65,
-                                  width: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 35,
-                              ),
-                              //third
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image(
-                                  image: NetworkImage(_image.userImageURL),
-                                  height: 65,
-                                  width: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 45,
-                              ),
-                              //fourth
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image(
-                                  image: NetworkImage(_image.userImageURL),
-                                  height: 65,
-                                  width: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 45,
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image(
-                                  image: NetworkImage(_image.userImageURL),
-                                  height: 65,
-                                  width: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 45,
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image(
-                                  image: NetworkImage(_image.userImageURL),
-                                  height: 65,
-                                  width: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 35,
-                              ),
-                              //third
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image(
-                                  image: NetworkImage(_image.userImageURL),
-                                  height: 65,
-                                  width: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 45,
-                              ),
-                              //fourth
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image(
-                                  image: NetworkImage(_image.userImageURL),
-                                  height: 65,
-                                  width: 65,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )),
-
-                    Flexible(
-                      child: SizedBox(
-                        height: 40,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Your Story",
-                                ),
-                                Text(" __m_cgain"),
-                                Text("_probably--prijesh-"),
-                                Text(" mr_saurav"),
-                                Text(
-                                  "Your Story",
-                                ),
-                                Text(" __m_cgain"),
-                                Text("_probably--prijesh-"),
-                                Text(" mr_saurav"),
-                                //USERSECTION KO CHILDREN KO BRACKET
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    //USERNAME SECTION
-                    Row(
-                      children: [
+                        //story WALA SECTION
                         ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Image(
-                              image: NetworkImage(_image.userImageURL),
-                              height: 65,
-                              width: 65,
-                              fit: BoxFit.cover,
-                            )),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text("suprim_01  "),
-                        Icon(
-                          Icons.verified,
-                          color: Colors.blue,
-                          size: 18,
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image(
+                            image: NetworkImage(_image.pageURL),
+                            height: 65,
+                            width: 65,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         SizedBox(
-                          width: 200,
+                          width: 45,
                         ),
-                        Icon(Icons.more_horiz)
-                      ],
-                    ),
-
-                    //post section
-
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 25),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image(
+                            image: NetworkImage(_image.pageURL),
+                            height: 65,
+                            width: 65,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        Icon(Icons.favorite_border),
                         SizedBox(
-                          width: 25,
+                          width: 35,
                         ),
-                        Icon(Icons.insert_comment_outlined),
+                        //third
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image(
+                            image: NetworkImage(_image.userImageURL),
+                            height: 65,
+                            width: 65,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                         SizedBox(
-                          width: 25,
+                          width: 45,
                         ),
-                        Icon(Icons.send),
+                        //fourth
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image(
+                            image: NetworkImage(_image.userImageURL),
+                            height: 65,
+                            width: 65,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                         SizedBox(
-                          width: 250,
+                          width: 45,
                         ),
-                        Padding(
-                            padding: EdgeInsets.fromLTRB(0.0, 10.0, 5.0, 10.0)),
-                        Icon(Icons.bookmark)
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image(
+                            image: NetworkImage(_image.userImageURL),
+                            height: 65,
+                            width: 65,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        Text("Liked by"),
-                        Text(
-                          " madhav and others",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        SizedBox(
+                          width: 45,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image(
+                            image: NetworkImage(_image.userImageURL),
+                            height: 65,
+                            width: 65,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 35,
+                        ),
+                        //third
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image(
+                            image: NetworkImage(_image.userImageURL),
+                            height: 65,
+                            width: 65,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 45,
+                        ),
+                        //fourth
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image(
+                            image: NetworkImage(_image.userImageURL),
+                            height: 65,
+                            width: 65,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Text("1 min ago "),
-                      ],
-                    ),
-
-                    SizedBox(
-                      height: 40,
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(Icons.home),
-                        Icon(Icons.search),
-                        Icon(Icons.tv),
-                        Icon(Icons.shop),
-                        Icon(Icons.account_box),
-                      ],
-                    ),
-
-                    //ending point
-                  ]),
+                  ],
                 ),
-              ));
+              ),
+
+              SizedBox(
+                height: 40,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Your Story",
+                        ),
+                        Text(" __m_cgain"),
+                        Text("_probably--prijesh-"),
+                        Text(" mr_saurav"),
+                        Text(
+                          "Your Story",
+                        ),
+                        Text(" __m_cgain"),
+                        Text("_probably--prijesh-"),
+                        Text(" mr_saurav"),
+                        //USERSECTION KO CHILDREN KO BRACKET
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              //USERNAME SECTION
+              Row(
+                children: [
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image(
+                        image: NetworkImage(_image.userImageURL),
+                        height: 65,
+                        width: 65,
+                        fit: BoxFit.cover,
+                      )),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text("suprim_01  "),
+                  Icon(
+                    Icons.verified,
+                    color: Colors.blue,
+                    size: 18,
+                  ),
+                  SizedBox(
+                    width: 200,
+                  ),
+                  Icon(Icons.more_horiz)
+                ],
+              ),
+
+              //post section
+              Container(
+                child: Image(image: NetworkImage(_image.userImageURL)),
+              ),
+
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 25),
+                  ),
+                  Icon(Icons.favorite_border),
+                  SizedBox(
+                    width: 25,
+                  ),
+                  Icon(Icons.insert_comment_outlined),
+                  SizedBox(
+                    width: 25,
+                  ),
+                  Icon(Icons.send),
+                  SizedBox(
+                    width: 250,
+                  ),
+                  Padding(padding: EdgeInsets.fromLTRB(0.0, 10.0, 5.0, 10.0)),
+                  Icon(Icons.bookmark)
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                  ),
+                  Text("Liked by"),
+                  Text(
+                    " madhav and others",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("1 min ago "),
+                ],
+              ),
+
+              SizedBox(
+                height: 40,
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.home),
+                  Icon(Icons.search),
+                  Icon(Icons.tv),
+                  Icon(Icons.shop),
+                  Icon(Icons.account_box),
+                ],
+              ),
+
+              //ending point
+            ]),
+          ));
         }),
-      ));
-    }
+      ),
+    );
   }
 
   @override
