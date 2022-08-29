@@ -73,31 +73,13 @@ class _HomepageState extends State<Homepage> {
         itemCount: image.length,
         itemBuilder: ((context, index) {
           final Hits _image = image[index];
+
+          print(_image.userImageURL);
+
           return Container(
               child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(children: [
-              Icon(Icons.add),
-              SizedBox(
-                width: 15,
-              ),
-              Text(
-                "Instagram",
-                style: TextStyle(fontSize: 35),
-              ),
-              SizedBox(
-                width: 120,
-              ),
-              Row(
-                children: [
-                  Icon(Icons.favorite),
-                  SizedBox(
-                    width: 40,
-                  ),
-                  Icon(Icons.send),
-                ],
-              ),
-
               SizedBox(
                 height: 130,
                 child: ListView(
@@ -110,6 +92,7 @@ class _HomepageState extends State<Homepage> {
                           borderRadius: BorderRadius.circular(50),
                           child: Image(
                             image: NetworkImage(_image.pageURL),
+                            errorBuilder: (context, e, a) => Container(),
                             height: 65,
                             width: 65,
                             fit: BoxFit.cover,
@@ -122,6 +105,7 @@ class _HomepageState extends State<Homepage> {
                           borderRadius: BorderRadius.circular(50),
                           child: Image(
                             image: NetworkImage(_image.pageURL),
+                            errorBuilder: (context, e, a) => Container(),
                             height: 65,
                             width: 65,
                             fit: BoxFit.cover,
@@ -135,6 +119,7 @@ class _HomepageState extends State<Homepage> {
                           borderRadius: BorderRadius.circular(50),
                           child: Image(
                             image: NetworkImage(_image.userImageURL),
+                            errorBuilder: (context, e, a) => Container(),
                             height: 65,
                             width: 65,
                             fit: BoxFit.cover,
@@ -151,6 +136,7 @@ class _HomepageState extends State<Homepage> {
                             height: 65,
                             width: 65,
                             fit: BoxFit.cover,
+                            errorBuilder: (context, e, a) => Container(),
                           ),
                         ),
                         SizedBox(
@@ -185,6 +171,7 @@ class _HomepageState extends State<Homepage> {
                           borderRadius: BorderRadius.circular(50),
                           child: Image(
                             image: NetworkImage(_image.userImageURL),
+                            errorBuilder: (context, e, a) => Container(),
                             height: 65,
                             width: 65,
                             fit: BoxFit.cover,
@@ -198,6 +185,7 @@ class _HomepageState extends State<Homepage> {
                           borderRadius: BorderRadius.circular(50),
                           child: Image(
                             image: NetworkImage(_image.userImageURL),
+                            errorBuilder: (context, e, a) => Container(),
                             height: 65,
                             width: 65,
                             fit: BoxFit.cover,
@@ -310,17 +298,6 @@ class _HomepageState extends State<Homepage> {
                 height: 40,
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.home),
-                  Icon(Icons.search),
-                  Icon(Icons.tv),
-                  Icon(Icons.shop),
-                  Icon(Icons.account_box),
-                ],
-              ),
-
               //ending point
             ]),
           ));
@@ -332,6 +309,33 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Instagram",
+          style: TextStyle(fontSize: 35),
+        ),
+        leading: Icon(Icons.add),
+        actions: [
+          Icon(Icons.favorite),
+          SizedBox(
+            width: 40,
+          ),
+          Icon(Icons.send),
+        ],
+      ),
+      bottomNavigationBar: Container(
+        height: 70,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(Icons.home),
+            Icon(Icons.search),
+            Icon(Icons.tv),
+            Icon(Icons.shop),
+            Icon(Icons.account_box),
+          ],
+        ),
+      ),
       body: buildList(),
     );
   }
