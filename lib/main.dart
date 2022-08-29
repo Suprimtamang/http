@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'screen/hompage.dart';
+import 'package:freshstart/login_page.dart';
+import 'package:freshstart/model/custom_nav.dart';
+import 'package:freshstart/screen/navigation.dart';
+import 'package:freshstart/stopwatch.dart';
+import 'package:freshstart/tiktok_homepage.dart';
+import 'screen/instagram_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,7 +16,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Homepage(),
+      home: NavigatorScreen(),
+      onGenerateRoute: ourRouteGenerator,
     );
   }
 }
