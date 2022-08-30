@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:freshstart/login_page.dart';
 import 'package:freshstart/model/routes.dart';
 import 'package:freshstart/screen/instagram_page.dart';
+import 'package:freshstart/screen/sql_noteapp.dart';
 import 'package:freshstart/stopwatch.dart';
 import 'package:freshstart/tiktok_homepage.dart';
+import 'dart:ui';
 
 class NavigatorScreen extends StatelessWidget {
   NavigatorScreen({Key? key}) : super(key: key);
@@ -25,6 +27,11 @@ class NavigatorScreen extends StatelessWidget {
       "name": 'Stopwatch ',
       "widget": const StopWatch(),
       "route": Routes.Stopwatch
+    },
+    {
+      "name": 'Notes ',
+      "widget": const SqlNoteScreen(),
+      "route": Routes.SqlNoteScreen
     },
   ];
 

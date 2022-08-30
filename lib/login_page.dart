@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freshstart/signup_page.dart';
 
 final String imgsrc =
     'https://c.tenor.com/QNP6E3bnOiUAAAAC/long-livethe-blob-monkey.gif';
@@ -152,7 +153,14 @@ class FormScreenState extends State<FormScreen> {
                     // shape:
                     //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     // color: Colors.blue,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (c) => SignUpPage(),
+                        ),
+                      );
+                    },
                     child: Text(
                       'Register',
                       style: TextStyle(
