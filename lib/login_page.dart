@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freshstart/signup_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 final String imgsrc =
     'https://c.tenor.com/QNP6E3bnOiUAAAAC/long-livethe-blob-monkey.gif';
@@ -17,14 +19,27 @@ class FormScreenState extends State<FormScreen> {
   final formKey = GlobalKey<FormState>();
   bool hidePassword = true;
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  createUserWithFirebase() async {
+    try {
+      final Credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: emailController.text, password: passwordController.text);
+      print(Credential.toString());
+      Fluttertoast.showToast(msg: "Succesful login!");
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      print(e.code);
+      Fluttertoast.showToast(msg: e.message ?? "AN error while signing up");
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //     title: Text(
-      //   'Login Page',
-      //   style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-      // )),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
