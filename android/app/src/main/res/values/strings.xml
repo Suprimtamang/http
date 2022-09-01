@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources> 
+<string name="app_name">freshstart</string>
+<string name="facebook_app_id">440081588074999</string>
+<string name="fb_login_protocol_scheme">test</string>
+<string name="facebook_client_token">ad0f8837c9f42a89c610889954610c22</string>
+</resources>
