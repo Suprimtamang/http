@@ -155,8 +155,17 @@ class FormScreenState extends State<FormScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 color: Colors.grey[300],
                 onPressed: () {},
-                child: Text(
-                  'Login with Google ',
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/google logo.png',
+                      height: 30,
+                      width: 30,
+                    ),
+                    Text(
+                      'Login with Google ',
+                    ),
+                  ],
                 ),
               ),
               Row(

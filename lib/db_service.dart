@@ -1,6 +1,7 @@
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class DbService {
   static int _version = 1;
