@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:freshstart/model/custom_nav.dart';
 import 'package:freshstart/screen/navigation.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

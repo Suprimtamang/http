@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:freshstart/signup_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 final String imgsrc =
     'https://c.tenor.com/QNP6E3bnOiUAAAAC/long-livethe-blob-monkey.gif';
@@ -37,6 +38,30 @@ class FormScreenState extends State<FormScreen> {
     }
   }
 
+  signInWithGoogle() async {
+    final google = GoogleSignIn();
+    if (google == null) {
+      print("login invalid!");
+      return;
+    }
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  signInWithFacebook() {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,12 +174,10 @@ class FormScreenState extends State<FormScreen> {
               ),
               SizedBox(height: 30),
               MaterialButton(
-                minWidth: 100,
-                height: 45,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 color: Colors.grey[300],
-                onPressed: () {},
+                onPressed: signInWithGoogle,
                 child: Row(
                   children: [
                     Image.asset(
@@ -164,6 +187,24 @@ class FormScreenState extends State<FormScreen> {
                     ),
                     Text(
                       'Login with Google ',
+                    ),
+                  ],
+                ),
+              ),
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                color: Colors.grey[300],
+                onPressed: signInWithFacebook,
+                child: Column(
+                  children: [
+                    Image.asset(
+                      '/Users/suprimtamang/Desktop/freshstart/assets/icons/fb logo.png',
+                      height: 10,
+                      width: 10,
+                    ),
+                    Text(
+                      'Login with facebook_id',
                     ),
                   ],
                 ),
