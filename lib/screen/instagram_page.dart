@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 // import '../model/post.dart';
 import '../model/image.dart';
@@ -253,8 +254,8 @@ class _InstagrampageState extends State<Instagrampage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Instagram",
-          style: TextStyle(fontSize: 35),
+          "INSTAGRAM",
+          style: GoogleFonts.notoSans(),
         ),
         leading: Icon(Icons.add),
         actions: [

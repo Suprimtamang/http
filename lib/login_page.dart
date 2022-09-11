@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:freshstart/screen/navigation.dart';
+import 'package:freshstart/service/custom_theme.dart';
 import 'package:freshstart/signup_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -64,7 +66,20 @@ class FormScreenState extends State<FormScreen> {
   signInWithFacebook() {}
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
+      appBar: AppBar(actions: [
+        IconButton(
+            onPressed: () {
+              bool isDarkTheme =
+                  CustomTheme.isDarkTheme(theme.scaffoldBackgroundColor);
+            },
+            icon: Icon(
+              Icons.dark_mode,
+              color: Colors.white,
+              size: 35,
+            )),
+      ]),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
@@ -79,14 +94,14 @@ class FormScreenState extends State<FormScreen> {
                     image: DecorationImage(
                         image: NetworkImage(imgsrc), fit: BoxFit.cover)),
               ),
-              const Text(
+              Text(
                 'Login Page',
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 50,
                     fontWeight: FontWeight.bold),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 10,
               ),
               TextFormField(
@@ -124,10 +139,6 @@ class FormScreenState extends State<FormScreen> {
                 height: 10,
               ),
               MaterialButton(
-                // minWidth: 400,
-                // shape:
-                //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                // color: Colors.blue,
                 onPressed: () {},
                 child: Text(
                   '                                      Forgot Password?',
@@ -145,12 +156,7 @@ class FormScreenState extends State<FormScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 color: Colors.blue[900],
-                onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => NavigatorScreen()));
-                },
+                onPressed: () {},
                 child: Text(
                   "Login",
                   style: TextStyle(color: Colors.white),
@@ -185,6 +191,9 @@ class FormScreenState extends State<FormScreen> {
                       height: 30,
                       width: 30,
                     ),
+                    SizedBox(
+                      width: 30,
+                    ),
                     Text(
                       'Login with Google ',
                     ),
@@ -196,12 +205,15 @@ class FormScreenState extends State<FormScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 color: Colors.grey[300],
                 onPressed: signInWithFacebook,
-                child: Column(
+                child: Row(
                   children: [
                     Image.asset(
-                      '/Users/suprimtamang/Desktop/freshstart/assets/icons/fb logo.png',
-                      height: 10,
-                      width: 10,
+                      'assets/icons/fb logo.png',
+                      height: 30,
+                      width: 30,
+                    ),
+                    SizedBox(
+                      width: 30,
                     ),
                     Text(
                       'Login with facebook_id',
@@ -214,10 +226,6 @@ class FormScreenState extends State<FormScreen> {
                 children: [
                   Text('New to logistic?'),
                   MaterialButton(
-                    // minWidth: 400,
-                    // shape:
-                    //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    // color: Colors.blue,
                     onPressed: () {
                       Navigator.push(
                         context,
