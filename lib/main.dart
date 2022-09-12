@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freshstart/homepage.dart';
 import 'package:freshstart/model/custom_nav.dart';
 import 'package:freshstart/screen/navigation.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
             darkTheme: CustomTheme.DarkTheme,
             themeMode: state,
             debugShowCheckedModeBanner: false,
-            home: NavigatorScreen(),
+            home: Homepage(),
             onGenerateRoute: ourRouteGenerator,
           );
         },
