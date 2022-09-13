@@ -7,10 +7,7 @@ class Hero2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [Hero(tag: "suprim", child: Image.network(imgsrc))],
-      ),
+      body: Center(child: Hero(tag: "suprim", child: Image.network(imgsrc))),
     );
   }
 }

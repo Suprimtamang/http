@@ -8,14 +8,16 @@ class LottieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(children: [
-        Lottie.asset("assets/animation/apple.json", height: 100),
-        Lottie.asset("assets/animation/car.json"),
-        Image.asset(
-          "assets/animation/applecut.gif",
-          height: 100,
-        )
-      ]),
+      body: Flexible(
+        child: Column(children: [
+          Lottie.asset("assets/animation/apple.json", height: 30, width: 30),
+          Lottie.asset("assets/animation/apple.json"),
+          // Lottie.asset(
+          //   "assets/animation/apple.gif",
+          //   height: 100,
+          // )
+        ]),
+      ),
     );
   }
 }
