@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freshstart/login_page.dart';
-import 'package:freshstart/screen/hero2..dart';
+import 'package:freshstart/screen/animation/hero2..dart';
 
 class Hero1 extends StatelessWidget {
   const Hero1({super.key});
@@ -8,6 +8,7 @@ class Hero1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: InkWell(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (_) => Hero2()));
