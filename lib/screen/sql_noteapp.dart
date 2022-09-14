@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:freshstart/db_service.dart';
+import 'package:freshstart/service/db_service.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';

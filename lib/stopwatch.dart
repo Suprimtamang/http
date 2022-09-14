@@ -13,6 +13,7 @@ class _StopWatchState extends State<StopWatch> {
   int timeleft = 5;
 
   void _startCountdown() {
+    //.periodic le chai yo timing milauxa
     Timer.periodic(Duration(seconds: 1), (timer) {
       if (timeleft > 0) {
         setState(() {

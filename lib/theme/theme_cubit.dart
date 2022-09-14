@@ -5,8 +5,8 @@ class ThemeCubit extends Cubit<ThemeMode> {
   //intial stage
   ThemeCubit() : super(ThemeMode.system);
 //toggle means interchange
-  toggleTheme(bool isDarkTheme) {
-    if (isDarkTheme) {
+  toggleTheme(bool isCurrentlyDarkTheme) {
+    if (isCurrentlyDarkTheme) {
       emit(ThemeMode.light);
     } else {
       emit(ThemeMode.dark);

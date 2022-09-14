@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freshstart/screen/navigation.dart';
 import 'package:freshstart/service/custom_theme.dart';
 import 'package:freshstart/signup_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:freshstart/theme/theme_cubit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final String imgsrc =
@@ -23,22 +25,6 @@ class FormScreenState extends State<FormScreen> {
   bool hidePassword = true;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-  createUserWithFirebase() async {
-    try {
-      final Credential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: emailController.text, password: passwordController.text);
-      print(Credential.toString());
-      Fluttertoast.showToast(msg: "Succesful login!");
-    } on FirebaseAuthException catch (e) {
-      print(e.message);
-      print(e.code);
-      Fluttertoast.showToast(msg: e.message ?? "AN error while signing up");
-    } catch (e) {
-      print(e);
-    }
-  }
 
   signInWithGoogle() async {
     final google = GoogleSignIn();
@@ -73,6 +59,7 @@ class FormScreenState extends State<FormScreen> {
             onPressed: () {
               bool isDarkTheme =
                   CustomTheme.isDarkTheme(theme.scaffoldBackgroundColor);
+              context.read<ThemeCubit>().toggleTheme(isDarkTheme);
             },
             icon: Icon(
               Icons.dark_mode,

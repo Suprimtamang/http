@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freshstart/login_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final String imgsrc1 =
     'https://c.tenor.com/cvwoUZBC3sYAAAAM/whiskey-ei-suoi-amici-coccole-sonore.gif';
@@ -17,6 +19,23 @@ class SignUpPageState extends State<SignUpPage> {
   final formKey = GlobalKey<FormState>();
   bool hidePassword = true;
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  createUserWithFirebase() async {
+    try {
+      final Credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: emailController.text, password: passwordController.text);
+      print(Credential.toString());
+      Fluttertoast.showToast(msg: "Succesful login!");
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      print(e.code);
+      Fluttertoast.showToast(msg: e.message ?? "AN error while signing up");
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

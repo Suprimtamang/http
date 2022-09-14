@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             theme: CustomTheme.lightTheme,
             darkTheme: CustomTheme.DarkTheme,
-            // themeMode: state,
+            themeMode: state,
             debugShowCheckedModeBanner: false,
-            home: Homepage(),
+            home: NavigatorScreen(),
             onGenerateRoute: ourRouteGenerator,
           );
         },

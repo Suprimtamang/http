@@ -63,7 +63,6 @@ flutter bloc:
 ## firebase depedencies
 firebase_core: ^1.21.1
 firebase_auth: ^3.7.0
-google_sign_in: ^5.4.1
 flutter_facebook_auth: ^4.4.1
 
 dev_dependencies:
